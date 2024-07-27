@@ -66,10 +66,20 @@ const Dashboard = () => {
                         <ul className="menu inter space-y-2 p-4 w-64 min-h-full bg-[#6A64F1] text-white">
                             {isAdmin && (
                                 <>
-                                    <NavLink to="/dashboard/manage-users" className="flex items-center gap-2 py-2 px-4 hover:bg-[#553c9a] rounded-md">
+                                    <NavLink to="/dashboard/manage-users"
+                                        className={({ isActive }) =>
+                                            isActive
+                                                ? "flex items-center gap-2 py-2 px-4 bg-[#553c9a] text-white rounded-md"
+                                                : "flex items-center gap-2 py-2 px-4 hover:bg-[#553c9a] rounded-md"
+                                        }>
                                         <span className="flex gap-1 items-center"> Manage User</span>
                                     </NavLink>
-                                    <NavLink to="/dashboard/all-transactions" className="flex items-center gap-2 py-2 px-4 hover:bg-[#553c9a] rounded-md">
+                                    <NavLink to="/dashboard/all-transactions"
+                                        className={({ isActive }) =>
+                                            isActive
+                                                ? "flex items-center gap-2 py-2 px-4 bg-[#553c9a] text-white rounded-md"
+                                                : "flex items-center gap-2 py-2 px-4 hover:bg-[#553c9a] rounded-md"
+                                        }>
                                         <span className="flex gap-1 items-center">All Transactions</span>
                                     </NavLink>
                                 </>
@@ -78,8 +88,13 @@ const Dashboard = () => {
                             {!isAdmin && (
                                 <>
                                     <li>
-                                        <NavLink to="/dashboard/my-participated-contest" className="flex items-center gap-2 py-2 px-4 hover:bg-[#553c9a] rounded-md">
-                                            <span className="flex gap-1 items-center">My Participated Contest</span>
+                                        <NavLink to="/dashboard/send-money"
+                                            className={({ isActive }) =>
+                                                isActive
+                                                    ? "flex items-center gap-2 py-2 px-4 bg-[#553c9a] text-white rounded-md"
+                                                    : "flex items-center gap-2 py-2 px-4 hover:bg-[#553c9a] rounded-md"
+                                            }>
+                                            <span className="flex gap-1 items-center">Send Money</span>
                                         </NavLink>
                                     </li>
                                     <li>

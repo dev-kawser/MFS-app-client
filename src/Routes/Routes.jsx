@@ -7,6 +7,7 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import ManageUsers from "../Pages/ManageUsers";
 import AllTransactions from "../Pages/AllTransactions";
 import Welcome from "../Pages/Welcome";
+import SendMoney from "../Pages/SendMoney";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: "all-transactions",
                 element: <AllTransactions></AllTransactions>
+            },
+            {
+                path: "send-money",
+                element: <SendMoney></SendMoney>
             },
         ]
     }

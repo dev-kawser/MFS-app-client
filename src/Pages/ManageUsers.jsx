@@ -39,17 +39,17 @@ const ManageUsers = () => {
         }
     };
 
-    const handleActionChange = async (id, status) => {
+    const handleActionChange = async (id, action) => {
         try {
             const token = localStorage.getItem('token'); // Get token from localStorage
-            await axios.patch(`http://localhost:5000/users/${id}`, { status }, {
+            await axios.patch(`http://localhost:5000/users/action/${id}`, { action }, {
                 headers: {
                     'Authorization': token
                 }
             });
-            setUsers(users.map(user => user._id === id ? { ...user, status } : user));
+            setUsers(users.map(user => user._id === id ? { ...user, action } : user));
         } catch (error) {
-            console.error("Error updating user status:", error);
+            console.error("Error updating user action:", error);
         }
     };
 
@@ -61,7 +61,7 @@ const ManageUsers = () => {
                     'Authorization': token
                 }
             });
-            setUsers(users.map(user => user._id === id ? { ...user, status } : user));
+            setUsers(users.map(user => user._id === id ? { ...user, status, balance: status === 'approved' ? 40 : user.balance } : user));
         } catch (error) {
             console.error("Error updating user status:", error);
         }
