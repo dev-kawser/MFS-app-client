@@ -8,26 +8,35 @@ const ManageUsers = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const token = localStorage.getItem('token'); // Get token from localStorage
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    throw new Error("Token not found");
+                }
+
                 const response = await axios.get('http://localhost:5000/users', {
                     headers: {
-                        'Authorization': token
+                        'Authorization': `Bearer ${token}`
                     }
                 });
                 setUsers(response.data);
             } catch (error) {
-                console.error("Error fetching users:", error);
+                console.error("Error fetching users:", error.message);
             }
         };
+
         fetchUsers();
     }, []);
 
     const handleSearch = async () => {
         try {
-            const token = localStorage.getItem('token'); // Get token from localStorage
+            const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error("Token not found");
+            }
+
             const response = await axios.get('http://localhost:5000/users/search', {
                 headers: {
-                    'Authorization': token
+                    'Authorization': `Bearer ${token}`
                 },
                 params: {
                     name: searchTerm
@@ -35,35 +44,43 @@ const ManageUsers = () => {
             });
             setUsers(response.data);
         } catch (error) {
-            console.error("Error searching users:", error);
+            console.error("Error searching users:", error.message);
         }
     };
 
     const handleActionChange = async (id, action) => {
         try {
-            const token = localStorage.getItem('token'); // Get token from localStorage
+            const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error("Token not found");
+            }
+
             await axios.patch(`http://localhost:5000/users/action/${id}`, { action }, {
                 headers: {
-                    'Authorization': token
+                    'Authorization': `Bearer ${token}`
                 }
             });
             setUsers(users.map(user => user._id === id ? { ...user, action } : user));
         } catch (error) {
-            console.error("Error updating user action:", error);
+            console.error("Error updating user action:", error.message);
         }
     };
 
     const handleStatusChange = async (id, status) => {
         try {
             const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error("Token not found");
+            }
+
             await axios.patch(`http://localhost:5000/users/status/${id}`, { status }, {
                 headers: {
-                    'Authorization': token
+                    'Authorization': `Bearer ${token}`
                 }
             });
             setUsers(users.map(user => user._id === id ? { ...user, status, balance: status === 'approved' ? 40 : user.balance } : user));
         } catch (error) {
-            console.error("Error updating user status:", error);
+            console.error("Error updating user status:", error.message);
         }
     };
 
@@ -92,7 +109,7 @@ const ManageUsers = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map((user) => (
+                    {users.length > 0 ? users.map((user) => (
                         <tr key={user._id}>
                             <td className="py-2 px-4 border-b">{user.name}</td>
                             <td className="py-2 px-4 border-b">{user.email}</td>
@@ -100,7 +117,7 @@ const ManageUsers = () => {
                             <td className="py-2 px-4 border-b">{user.role}</td>
                             <td className="py-2 px-4 border-b">
                                 {user.status === 'pending' ? (
-                                    <select onChange={(e) => handleStatusChange(user._id, e.target.value)}>
+                                    <select onChange={(e) => handleStatusChange(user._id, e.target.value)} value={user.status}>
                                         <option value="pending">Pending</option>
                                         <option value="approved">Approved</option>
                                     </select>
@@ -113,7 +130,11 @@ const ManageUsers = () => {
                                 <button onClick={() => handleActionChange(user._id, 'blocked')} className="px-4 py-2 bg-red-500 text-white rounded-md">Block</button>
                             </td>
                         </tr>
-                    ))}
+                    )) : (
+                        <tr>
+                            <td colSpan="6" className="py-2 px-4 text-center">No users found</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </div>

@@ -2,9 +2,8 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-
 const Dashboard = () => {
-
+    // eslint-disable-next-line no-unused-vars
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
 
@@ -14,10 +13,17 @@ const Dashboard = () => {
                 const token = localStorage.getItem('token'); // Get token from localStorage
                 const response = await axios.get('http://localhost:5000/users', {
                     headers: {
-                        'Authorization': token
+                        'Authorization': `Bearer ${token}`
                     }
                 });
                 setUsers(response.data);
+
+                const storedUser = localStorage.getItem('user');
+                if (storedUser) {
+                    const parsedUser = JSON.parse(storedUser);
+                    const matchedUser = response.data.find(user => user._id === parsedUser._id);
+                    setCurrentUser(matchedUser);
+                }
             } catch (error) {
                 console.error("Error fetching users:", error);
             }
@@ -26,23 +32,7 @@ const Dashboard = () => {
         fetchUsers();
     }, []);
 
-    useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            try {
-                const parsedUser = JSON.parse(storedUser);
-                const matchedUser = users.find(user => user._id === parsedUser._id); // Find matching user
-                setCurrentUser(matchedUser);
-            } catch (error) {
-                console.error("Error parsing user from local storage:", error);
-                localStorage.removeItem('user'); // Remove invalid data
-            }
-        }
-    }, [users]);
-
-
     const isAdmin = currentUser?.role === "admin";
-
 
     const navigate = useNavigate();
 
