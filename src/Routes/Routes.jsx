@@ -8,6 +8,8 @@ import ManageUsers from "../Pages/ManageUsers";
 import AllTransactions from "../Pages/AllTransactions";
 import Welcome from "../Pages/Welcome";
 import SendMoney from "../Pages/SendMoney";
+import BalanceInquiry from "../Pages/BalanceInquiry";
+import TransactionsHistory from "../Pages/TransactionsHistory";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
             {
                 path: "send-money",
                 element: <SendMoney></SendMoney>
+            },
+            {
+                path: "balance-inquiry",
+                element: <BalanceInquiry></BalanceInquiry>
+            },
+            {
+                path: "transactions-history",
+                element: <TransactionsHistory></TransactionsHistory>
             },
         ]
     }

@@ -98,13 +98,13 @@ const Dashboard = () => {
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/dashboard/my-winning-contest" className="flex items-center gap-2 py-2 px-4 hover:bg-[#553c9a] rounded-md">
-                                            <span className="flex gap-1 items-center">My Winning Contest Page</span>
+                                        <NavLink to="/dashboard/balance-inquiry" className="flex items-center gap-2 py-2 px-4 hover:bg-[#553c9a] rounded-md">
+                                            <span className="flex gap-1 items-center">Balance Inquiry</span>
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/dashboard/my-profile" className="flex items-center gap-2 py-2 px-4 hover:bg-[#553c9a] rounded-md">
-                                            <span className="flex gap-1 items-center">My Profile</span>
+                                        <NavLink to="/dashboard/transactions-history" className="flex items-center gap-2 py-2 px-4 hover:bg-[#553c9a] rounded-md">
+                                            <span className="flex gap-1 items-center">Transactions History</span>
                                         </NavLink>
                                     </li>
                                 </>

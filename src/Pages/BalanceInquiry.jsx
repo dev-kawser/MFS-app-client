@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Welcome = () => {
+const BalanceInquiry = () => {
+
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
 
@@ -39,17 +40,16 @@ const Welcome = () => {
 
     if (!currentUser) return null; // Return nothing if no matched user found
 
+
     return (
-        <div className="user-overview px-6 py-4 bg-white rounded-lg shadow-md">
-            <h1 className="text-2xl font-bold mb-4">Welcome, {currentUser.name}!</h1>
-            <ul className="list-disc space-y-2">
-                <li>Email: {currentUser.email}</li>
-                <li>Phone Number: {currentUser.mobileNumber}</li>
-                <li>Account Balance: {currentUser.balance.toFixed(2)}</li>
-                <li>Status: {currentUser.status}</li>
-            </ul>
+        <div>
+            <h2 className="text-3xl font-semibold text-center">
+                Account Balance: <span className="text-4xl text-green-500 font-bold">
+                    {currentUser.balance.toFixed(2)}
+                </span>
+            </h2>
         </div>
     );
 };
 
-export default Welcome;
+export default BalanceInquiry;
