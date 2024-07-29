@@ -10,6 +10,7 @@ import Welcome from "../Pages/Welcome";
 import SendMoney from "../Pages/SendMoney";
 import BalanceInquiry from "../Pages/BalanceInquiry";
 import TransactionsHistory from "../Pages/TransactionsHistory";
+import AgentTransactionsHistory from "../Pages/AgentTransactionsHistory";
 
 const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path: "transactions-history",
                 element: <TransactionsHistory></TransactionsHistory>
+            },
+            {
+                path: "agent-transactions-history",
+                element: <AgentTransactionsHistory></AgentTransactionsHistory>
             },
         ]
     }
