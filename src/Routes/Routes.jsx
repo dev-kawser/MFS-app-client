@@ -11,6 +11,8 @@ import SendMoney from "../Pages/SendMoney";
 import BalanceInquiry from "../Pages/BalanceInquiry";
 import TransactionsHistory from "../Pages/TransactionsHistory";
 import AgentTransactionsHistory from "../Pages/AgentTransactionsHistory";
+import CashIn from "../Pages/CashIn";
+import CashOut from "../Pages/CashOut";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
             {
                 path: "agent-transactions-history",
                 element: <AgentTransactionsHistory></AgentTransactionsHistory>
+            },
+            {
+                path: "cash-in",
+                element: <CashIn></CashIn>
+            },
+            {
+                path: "cash-out",
+                element: <CashOut></CashOut>
             },
         ]
     }
