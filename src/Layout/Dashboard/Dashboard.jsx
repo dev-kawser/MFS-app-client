@@ -33,6 +33,7 @@ const Dashboard = () => {
     }, []);
 
     const isAdmin = currentUser?.role === "admin";
+    const isAgent = currentUser?.role === "agent";
 
     const navigate = useNavigate();
 
@@ -75,7 +76,32 @@ const Dashboard = () => {
                                 </>
                             )}
 
-                            {!isAdmin && (
+                            {isAgent && (
+                                <>
+                                    <li>
+                                        <NavLink to="/dashboard/transaction-management"
+                                            className={({ isActive }) =>
+                                                isActive
+                                                    ? "flex items-center gap-2 py-2 px-4 bg-[#553c9a] text-white rounded-md"
+                                                    : "flex items-center gap-2 py-2 px-4 hover:bg-[#553c9a] rounded-md"
+                                            }>
+                                            <span className="flex gap-1 items-center">Transaction Management</span>
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/balance-inquiry" className="flex items-center gap-2 py-2 px-4 hover:bg-[#553c9a] rounded-md">
+                                            <span className="flex gap-1 items-center">Balance Inquiry</span>
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/dashboard/transactions-history" className="flex items-center gap-2 py-2 px-4 hover:bg-[#553c9a] rounded-md">
+                                            <span className="flex gap-1 items-center">Transactions History</span>
+                                        </NavLink>
+                                    </li>
+                                </>
+                            )}
+
+                            {!isAdmin && !isAgent ? (
                                 <>
                                     <li>
                                         <NavLink to="/dashboard/send-money"
@@ -98,7 +124,7 @@ const Dashboard = () => {
                                         </NavLink>
                                     </li>
                                 </>
-                            )}
+                            ) : ""}
                             {/* For all roles */}
                             <div className="divider divider-error" />
                             <li>
