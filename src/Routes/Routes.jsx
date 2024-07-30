@@ -13,6 +13,7 @@ import TransactionsHistory from "../Pages/TransactionsHistory";
 import AgentTransactionsHistory from "../Pages/AgentTransactionsHistory";
 import CashIn from "../Pages/CashIn";
 import CashOut from "../Pages/CashOut";
+import TransactionsManagement from "../Pages/TransactionsManagement";
 
 const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
             {
                 path: "cash-out",
                 element: <CashOut></CashOut>
+            },
+            {
+                path: "transaction-management",
+                element: <TransactionsManagement></TransactionsManagement>
             },
         ]
     }

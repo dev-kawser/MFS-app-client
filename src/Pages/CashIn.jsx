@@ -8,6 +8,9 @@ const CashIn = () => {
         amount: '',
         pin: ''
     });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
 
     useEffect(() => {
         const fetchAgents = async () => {
@@ -18,6 +21,7 @@ const CashIn = () => {
                 setAgents(response.data);
             } catch (error) {
                 console.error(error);
+                setError('Failed to fetch agents');
             }
         };
         fetchAgents();
@@ -29,13 +33,20 @@ const CashIn = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        setError(null);
+        setSuccess(null);
+
         try {
             await axios.post('http://localhost:5000/cash-in', formData, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });
-            alert('Cash-In request sent successfully');
+            setSuccess('Cash-In request submitted and is pending approval.');
         } catch (error) {
             console.error(error);
+            setError('Failed to submit Cash-In request.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -49,7 +60,11 @@ const CashIn = () => {
             </select>
             <input name="amount" value={formData.amount} onChange={handleChange} placeholder="Amount" type="number" />
             <input name="pin" value={formData.pin} onChange={handleChange} placeholder="PIN" type="password" />
-            <button type="submit">Cash In</button>
+            <button type="submit" disabled={loading}>
+                {loading ? 'Submitting...' : 'Cash In'}
+            </button>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {success && <p style={{ color: 'green' }}>{success}</p>}
         </form>
     );
 };
