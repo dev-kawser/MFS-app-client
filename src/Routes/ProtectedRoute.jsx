@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
 
 import { Navigate } from 'react-router-dom';
-import useAuth from '../Hooks/useAuth';
 
 const ProtectedRoute = ({ children }) => {
-    const isAuthenticated = useAuth();
+    const token = localStorage.getItem('user');
 
-    if (!isAuthenticated) {
+    if (!token) {
         return <Navigate to="/" />;
     }
 

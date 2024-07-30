@@ -14,60 +14,64 @@ import AgentTransactionsHistory from "../Pages/AgentTransactionsHistory";
 import CashIn from "../Pages/CashIn";
 import CashOut from "../Pages/CashOut";
 import TransactionsManagement from "../Pages/TransactionsManagement";
-import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "../Routes/ProtectedRoute"
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Login />,
+        element: <Login></Login>,
     },
     {
         path: "/register",
-        element: <Register />,
+        element: <Register></Register>,
     },
     {
         path: "dashboard",
-        element: <ProtectedRoute><Dashboard /></ProtectedRoute>,
+        element: <ProtectedRoute>
+            <Dashboard></Dashboard>
+        </ProtectedRoute>,
         children: [
+
             {
                 path: "welcome",
-                element: <ProtectedRoute><Welcome /></ProtectedRoute>
+                element: <Welcome></Welcome>
+
             },
             {
                 path: "manage-users",
-                element: <ProtectedRoute><ManageUsers /></ProtectedRoute>
+                element: <ManageUsers></ManageUsers>
             },
             {
                 path: "all-transactions",
-                element: <ProtectedRoute><AllTransactions /></ProtectedRoute>
+                element: <AllTransactions></AllTransactions>
             },
             {
                 path: "send-money",
-                element: <ProtectedRoute><SendMoney /></ProtectedRoute>
+                element: <SendMoney></SendMoney>
             },
             {
                 path: "balance-inquiry",
-                element: <ProtectedRoute><BalanceInquiry /></ProtectedRoute>
+                element: <BalanceInquiry></BalanceInquiry>
             },
             {
                 path: "transactions-history",
-                element: <ProtectedRoute><TransactionsHistory /></ProtectedRoute>
+                element: <TransactionsHistory></TransactionsHistory>
             },
             {
                 path: "agent-transactions-history",
-                element: <ProtectedRoute><AgentTransactionsHistory /></ProtectedRoute>
+                element: <AgentTransactionsHistory></AgentTransactionsHistory>
             },
             {
                 path: "cash-in",
-                element: <ProtectedRoute><CashIn /></ProtectedRoute>
+                element: <CashIn></CashIn>
             },
             {
                 path: "cash-out",
-                element: <ProtectedRoute><CashOut /></ProtectedRoute>
+                element: <CashOut></CashOut>
             },
             {
                 path: "transaction-management",
-                element: <ProtectedRoute><TransactionsManagement /></ProtectedRoute>
+                element: <TransactionsManagement></TransactionsManagement>
             },
         ]
     }
