@@ -17,7 +17,7 @@ const SendMoney = () => {
             return;
         }
 
-        const response = await axios.post('http://localhost:5000/send-money', {
+        const response = await axios.post('https://task-server-five-mu.vercel.app/send-money', {
             recipient,
             amount,
             pin

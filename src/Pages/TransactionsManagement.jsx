@@ -13,7 +13,7 @@ const TransactionsManagement = () => {
                     throw new Error('No token found');
                 }
 
-                const response = await axios.get('http://localhost:5000/pending-transactions', {
+                const response = await axios.get('https://task-server-five-mu.vercel.app/pending-transactions', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 
@@ -36,7 +36,7 @@ const TransactionsManagement = () => {
                 throw new Error('No token found');
             }
 
-            const response = await axios.patch(`http://localhost:5000/approve-transaction/${id}`, { approve: true }, {
+            const response = await axios.patch(`https://task-server-five-mu.vercel.app/approve-transaction/${id}`, { approve: true }, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -56,7 +56,7 @@ const TransactionsManagement = () => {
                 throw new Error('No token found');
             }
 
-            const response = await axios.patch(`http://localhost:5000/approve-transaction/${id}`, { approve: false }, {
+            const response = await axios.patch(`https://task-server-five-mu.vercel.app/approve-transaction/${id}`, { approve: false }, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 

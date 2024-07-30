@@ -18,7 +18,7 @@ const TransactionsHistory = () => {
             }
 
             try {
-                const response = await axios.get('http://localhost:5000/transactions', {
+                const response = await axios.get('https://task-server-five-mu.vercel.app/transactions', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -52,8 +52,8 @@ const TransactionsHistory = () => {
             <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Transaction History</h2>
 
             <ul className="space-y-4">
-                {currentTransactions.length > 0 ? (
-                    currentTransactions.map((transaction, index) => (
+                {currentTransactions?.length > 0 ? (
+                    currentTransactions?.map((transaction, index) => (
                         <li key={index} className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
                             <div className="flex justify-between items-center mb-2">
                                 <span className="text-gray-700 font-semibold">Amount:</span>

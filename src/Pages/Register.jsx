@@ -23,7 +23,7 @@ const Register = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/register', registerInfo);
+      const response = await axios.post('https://task-server-five-mu.vercel.app/register', registerInfo);
       console.log(response.data);
       navigate('/');
     } catch (error) {

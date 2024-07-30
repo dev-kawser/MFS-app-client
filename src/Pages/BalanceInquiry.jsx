@@ -10,7 +10,7 @@ const BalanceInquiry = () => {
         const fetchUsers = async () => {
             try {
                 const token = localStorage.getItem('token'); // Get token from localStorage
-                const response = await axios.get('http://localhost:5000/users', {
+                const response = await axios.get('https://task-server-five-mu.vercel.app/users', {
                     headers: {
                         'Authorization': `Bearer ${token}` // Format the token correctly
                     }
@@ -48,7 +48,7 @@ const BalanceInquiry = () => {
             </h2>
             <div className="flex justify-center items-baseline">
                 <span className="text-4xl text-green-600 font-bold">
-                    {currentUser.balance.toFixed(2)}
+                    {currentUser?.balance.toFixed(2)}
                 </span>
                 <span className="text-lg text-gray-500 ml-2">TK</span>
             </div>

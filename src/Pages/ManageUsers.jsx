@@ -16,7 +16,7 @@ const ManageUsers = () => {
                     throw new Error("Token not found");
                 }
 
-                const response = await axios.get('http://localhost:5000/users', {
+                const response = await axios.get('https://task-server-five-mu.vercel.app/users', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -38,7 +38,7 @@ const ManageUsers = () => {
                 throw new Error("Token not found");
             }
 
-            const response = await axios.get('http://localhost:5000/users/search', {
+            const response = await axios.get('https://task-server-five-mu.vercel.app/users/search', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 },
@@ -60,7 +60,7 @@ const ManageUsers = () => {
                 throw new Error("Token not found");
             }
 
-            await axios.patch(`http://localhost:5000/users/action/${id}`, { action }, {
+            await axios.patch(`https://task-server-five-mu.vercel.app/users/action/${id}`, { action }, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -78,7 +78,7 @@ const ManageUsers = () => {
                 throw new Error("Token not found");
             }
 
-            await axios.patch(`http://localhost:5000/users/status/${id}`, { status }, {
+            await axios.patch(`https://task-server-five-mu.vercel.app/users/status/${id}`, { status }, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -132,7 +132,7 @@ const ManageUsers = () => {
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                    {currentUsers.length > 0 ? currentUsers.map((user) => (
+                    {currentUsers?.length > 0 ? currentUsers?.map((user) => (
                         <tr key={user._id} className="hover:bg-gray-50">
                             <td className="py-4 px-6">{user.name}</td>
                             <td className="py-4 px-6">{user.email}</td>
@@ -177,7 +177,7 @@ const ManageUsers = () => {
 
             {/* Pagination Controls */}
             <div className="flex justify-between items-center mt-6">
-                <button 
+                <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
                     className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-300 transition-colors"
@@ -187,7 +187,7 @@ const ManageUsers = () => {
                 <span className="text-lg">
                     Page {currentPage} of {totalPages}
                 </span>
-                <button 
+                <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
                     className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-300 transition-colors"

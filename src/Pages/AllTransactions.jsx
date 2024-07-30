@@ -16,12 +16,12 @@ const AllTransactions = () => {
             }
 
             try {
-                const response = await axios.get('http://localhost:5000/allTransactions', {
+                const response = await axios.get('https://task-server-five-mu.vercel.app/allTransactions', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-                setTransactions(response.data);
+                setTransactions(response?.data);
                 setTotalTransactions(response.data.length); // Set total transactions
             } catch (error) {
                 console.error("Error fetching transactions:", error.message);
@@ -59,8 +59,8 @@ const AllTransactions = () => {
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                    {currentTransactions.length > 0 ? (
-                        currentTransactions.map(transaction => (
+                    {currentTransactions?.length > 0 ? (
+                        currentTransactions?.map(transaction => (
                             <tr key={transaction._id} className="hover:bg-gray-50">
                                 <td className="py-4 px-6">{transaction._id}</td>
                                 <td className="py-4 px-6 text-green-600 font-medium">{transaction.amount} TK</td>

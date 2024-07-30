@@ -15,7 +15,7 @@ const CashIn = () => {
     useEffect(() => {
         const fetchAgents = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/agents', {
+                const response = await axios.get('https://task-server-five-mu.vercel.app/agents', {
                     headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
                 });
                 setAgents(response.data);
@@ -38,7 +38,7 @@ const CashIn = () => {
         setSuccess(null);
 
         try {
-            await axios.post('http://localhost:5000/cash-in', formData, {
+            await axios.post('https://task-server-five-mu.vercel.app/cash-in', formData, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });
             setSuccess('Cash-In request submitted and is pending approval.');
@@ -58,12 +58,12 @@ const CashIn = () => {
                     <label className="block text-gray-700 text-sm font-medium mb-2">Select Agent</label>
                     <select
                         name="agentId"
-                        value={formData.agentId}
+                        value={formData?.agentId}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option value="">Select Agent</option>
-                        {agents.map(agent => (
+                        {agents?.map(agent => (
                             <option key={agent._id} value={agent._id}>{agent.name}</option>
                         ))}
                     </select>

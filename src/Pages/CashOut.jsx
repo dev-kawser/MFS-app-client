@@ -15,7 +15,7 @@ const CashOut = () => {
     useEffect(() => {
         const fetchAgents = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/agents', {
+                const response = await axios.get('https://task-server-five-mu.vercel.app/agents', {
                     headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
                 });
                 setAgents(response.data);
@@ -38,7 +38,7 @@ const CashOut = () => {
         setSuccess(null);
 
         try {
-            await axios.post('http://localhost:5000/cash-out', formData, {
+            await axios.post('https://task-server-five-mu.vercel.app/cash-out', formData, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });
             setSuccess('Cash-Out request submitted and is pending approval.');
@@ -63,7 +63,7 @@ const CashOut = () => {
                         className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option value="">Select Agent</option>
-                        {agents.map(agent => (
+                        {agents?.map(agent => (
                             <option key={agent._id} value={agent._id}>{agent.name}</option>
                         ))}
                     </select>

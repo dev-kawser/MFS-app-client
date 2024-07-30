@@ -11,7 +11,7 @@ const Dashboard = () => {
         const fetchUsers = async () => {
             try {
                 const token = localStorage.getItem('token'); // Get token from localStorage
-                const response = await axios.get('http://localhost:5000/users', {
+                const response = await axios.get('https://task-server-five-mu.vercel.app/users', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

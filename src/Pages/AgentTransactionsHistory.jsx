@@ -10,13 +10,13 @@ const AgentTransactionsHistory = () => {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/agent-transactions', {
+                const response = await axios.get('https://task-server-five-mu.vercel.app/agent-transactions', {
                     headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
                 });
                 setTransactions(response.data);
             } catch (error) {
                 console.error('Error fetching transactions:', error);
-                setError('Failed to fetch transactions.');
+                setError('Failed to fetch transactions. Please check the console for more details.');
             }
         };
         fetchTransactions();
@@ -42,12 +42,12 @@ const AgentTransactionsHistory = () => {
 
             {error && <p className="text-red-500 mb-4">{error}</p>}
 
-            {transactions.length === 0 ? (
+            {transactions?.length === 0 ? (
                 <p className="text-gray-600">No transactions found.</p>
             ) : (
                 <>
                     <ul className="space-y-4 mb-6">
-                        {currentTransactions.map(transaction => (
+                        {currentTransactions?.map(transaction => (
                             <li key={transaction._id} className="p-4 bg-gray-100 rounded-lg shadow-md flex justify-between items-center">
                                 <div>
                                     <p className="font-semibold text-lg">

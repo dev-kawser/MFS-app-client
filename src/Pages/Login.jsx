@@ -16,7 +16,7 @@ const Login = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:5000/login', loginInfo);
+            const response = await axios.post('https://task-server-five-mu.vercel.app/login', loginInfo);
             const { token, user } = response.data;
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(user));
