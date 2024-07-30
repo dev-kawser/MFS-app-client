@@ -42,13 +42,18 @@ const BalanceInquiry = () => {
 
 
     return (
-        <div>
-            <h2 className="text-3xl font-semibold text-center">
-                Account Balance: <span className="text-4xl text-green-500 font-bold">
+        <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+            <h2 className="text-3xl font-semibold text-center text-gray-800 mb-4">
+                Account Balance:
+            </h2>
+            <div className="flex justify-center items-baseline">
+                <span className="text-4xl text-green-600 font-bold">
                     {currentUser.balance.toFixed(2)}
                 </span>
-            </h2>
+                <span className="text-lg text-gray-500 ml-2">TK</span>
+            </div>
         </div>
+
     );
 };
 

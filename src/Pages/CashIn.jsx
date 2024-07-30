@@ -51,21 +51,59 @@ const CashIn = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <select name="agentId" value={formData.agentId} onChange={handleChange}>
-                <option value="">Select Agent</option>
-                {agents.map(agent => (
-                    <option key={agent._id} value={agent._id}>{agent.name}</option>
-                ))}
-            </select>
-            <input name="amount" value={formData.amount} onChange={handleChange} placeholder="Amount" type="number" />
-            <input name="pin" value={formData.pin} onChange={handleChange} placeholder="PIN" type="password" />
-            <button type="submit" disabled={loading}>
-                {loading ? 'Submitting...' : 'Cash In'}
-            </button>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {success && <p style={{ color: 'green' }}>{success}</p>}
-        </form>
+        <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Cash In</h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                    <label className="block text-gray-700 text-sm font-medium mb-2">Select Agent</label>
+                    <select
+                        name="agentId"
+                        value={formData.agentId}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        <option value="">Select Agent</option>
+                        {agents.map(agent => (
+                            <option key={agent._id} value={agent._id}>{agent.name}</option>
+                        ))}
+                    </select>
+                </div>
+                <div>
+                    <label className="block text-gray-700 text-sm font-medium mb-2">Amount</label>
+                    <input
+                        name="amount"
+                        value={formData.amount}
+                        onChange={handleChange}
+                        placeholder="Amount"
+                        type="number"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                    />
+                </div>
+                <div>
+                    <label className="block text-gray-700 text-sm font-medium mb-2">PIN</label>
+                    <input
+                        name="pin"
+                        value={formData.pin}
+                        onChange={handleChange}
+                        placeholder="PIN"
+                        type="password"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required
+                    />
+                </div>
+                <button
+                    type="submit"
+                    disabled={loading}
+                    className={`w-full py-3 rounded-md text-white font-semibold ${loading ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'} transition-colors`}
+                >
+                    {loading ? 'Submitting...' : 'Cash In'}
+                </button>
+                {error && <p className="text-red-500 text-center">{error}</p>}
+                {success && <p className="text-green-500 text-center">{success}</p>}
+            </form>
+        </div>
+
     );
 };
 

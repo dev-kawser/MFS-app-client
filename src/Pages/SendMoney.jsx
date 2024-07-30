@@ -32,34 +32,34 @@ const SendMoney = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold mb-4">Send Money</h2>
+        <div className="max-w-md mx-auto bg-gradient-to-r from-gray-50 to-gray-100 p-8 rounded-lg shadow-xl border border-gray-200">
+            <h2 className="text-3xl font-semibold text-gray-800 mb-6">Send Money</h2>
             <form onSubmit={handleSendMoney}>
-                <div className="mb-4">
-                    <label className="block text-gray-700">Recipient Mobile Number</label>
+                <div className="mb-6">
+                    <label className="block text-gray-700 text-sm font-medium mb-2">Recipient Mobile Number</label>
                     <input
                         type="text"
-                        className="w-full px-3 py-2 border rounded"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                         value={recipient}
                         onChange={(e) => setRecipient(e.target.value)}
                         required
                     />
                 </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700">Amount</label>
+                <div className="mb-6">
+                    <label className="block text-gray-700 text-sm font-medium mb-2">Amount</label>
                     <input
                         type="number"
-                        className="w-full px-3 py-2 border rounded"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         required
                     />
                 </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700">PIN</label>
+                <div className="mb-6">
+                    <label className="block text-gray-700 text-sm font-medium mb-2">PIN</label>
                     <input
                         type="password"
-                        className="w-full px-3 py-2 border rounded"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                         value={pin}
                         onChange={(e) => setPin(e.target.value)}
                         required
@@ -67,13 +67,14 @@ const SendMoney = () => {
                 </div>
                 <button
                     type="submit"
-                    className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-700"
+                    className="w-full bg-blue-600 text-white py-3 rounded-md shadow-md hover:bg-blue-700 transition-colors"
                 >
                     Send Money
                 </button>
             </form>
             <Toaster />
         </div>
+
     );
 };
 
