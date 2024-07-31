@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -33,9 +34,24 @@ const Register = () => {
 
   return (
     <div className="flex lg:px-0 px-2 items-center justify-center h-screen bg-gray-100">
-      <div className="w-full max-w-sm bg-white rounded-lg shadow-lg p-8">
-        <h2 className="text-3xl font-semibold mb-6 text-center text-gray-800">Register</h2>
-        <form onSubmit={handleRegister} className="space-y-6">
+      <div className="w-full max-w-sm bg-white rounded-lg shadow-lg p-8 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-75 pointer-events-none"></div>
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <h2 className="text-4xl font-bold mb-6 text-center text-white z-10 relative">
+            Create Account
+          </h2>
+        </motion.div>
+        <motion.form
+          onSubmit={handleRegister}
+          className="space-y-6 z-10 relative"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <div>
             <label className="block text-gray-700 text-sm font-medium mb-2">Name</label>
             <input
@@ -87,23 +103,25 @@ const Register = () => {
               <option value="agent">Agent</option>
             </select>
           </div>
-          <button
+          <motion.button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors"
+            whileHover={{ scale: 1.05 }}
           >
             Register
-          </button>
-        </form>
+          </motion.button>
+        </motion.form>
         <div className="mt-6 text-center">
-          <p className="text-gray-600">
+          <p className="text-gray-900">
             Already have an account?{' '}
-            <Link to="/" className="text-blue-500 hover:underline">
+            <Link to="/" className="text-blue-900 font-semibold hover:underline">
               Login
             </Link>
           </p>
         </div>
       </div>
     </div>
+
 
   );
 };
